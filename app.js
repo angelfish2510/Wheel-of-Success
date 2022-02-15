@@ -6,7 +6,7 @@ const overlay = document.getElementById('overlay');
 let missed = 0;
 
 let scoreboardLives = document.querySelector('#scoreboard ol')
-let liveHeart = scoreboardLives.firstChild();
+let liveHeart = scoreboardLives.firstChild;
 
 //declare and initialize the phrases array, storing at least five strings that contain only letters and spaces, no punctuation
 const myPhrases = ['Bunnies are the best',
