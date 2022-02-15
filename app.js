@@ -40,7 +40,7 @@ let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
 // Create an addPhraseToDisplay function that loops through an array of characters. You will need to write it so that it can take any array of letters and add it to the display.
 function addPhraseToDisplay(arr) {
 //  Inside the loop, for each character in the array,
-    for (let i = 0; i <= arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
 // ❏ Create a list li item
   const li = document.createElement('li');
 // ❏ Put the character inside of the list item
@@ -84,8 +84,8 @@ console.log( liElements[i].classList.add("show") );
             match = button.innertext;
         // } else if (button.innerText !== liLetters[i].innerText) {
         //     return null;
-        } else {
-            match = null;
+        // } else {
+        //     match = null;
         }
     }
     return match;
