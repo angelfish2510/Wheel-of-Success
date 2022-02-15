@@ -5,7 +5,8 @@ const overlay = document.getElementById('overlay');
 
 let missed = 0;
 
-let liveHeart = document.querySelector('#scoreboard ol')
+let scoreboardLives = document.querySelector('#scoreboard ol')
+let liveHeart = scoreboardLives.firstChild();
 
 //declare and initialize the phrases array, storing at least five strings that contain only letters and spaces, no punctuation
 const myPhrases = ['Bunnies are the best',
@@ -115,9 +116,7 @@ qwerty.addEventListener('click', (e) => {
 // images and increment the missed counter
         if (letterFound !== button.innerText) {
             missed++;
-            liveHeart.removeChild(liveHeart.firstChild);
-            const lostHeart = document.createElement('li');
-            lostHeart.src = "images/lostHeart.png";
+            liveHeart.src = "images/lostHeart.png";
 
         } else {
             alert("way to go!  Select another letter to continue playing.");
