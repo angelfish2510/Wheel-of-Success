@@ -61,7 +61,7 @@ if (arr[i] !== ' ') {
 
 // To use the function, you’ll get the value returned by the getRandomPhraseAsArray, save it to a variable, and pass it to addPhraseToDisplay as an argument.
 // let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
-console.log(addPhraseToDisplay(charactersInRandomPhrase));
+addPhraseToDisplay(charactersInRandomPhrase);
 
 
 
@@ -78,7 +78,7 @@ function checkLetter(button) {
 // ❏ Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
         if ( button.innerText === liElements[i].innerText ) {
 // ❏ If they match, add the “show” class to the li
-console.log( liElements[i].classList.add("show") );
+        liElements[i].classList.add("show");
 
 // ❏ If they match, store the button text in the match variable
             match = button.innertext;
@@ -117,7 +117,7 @@ qwerty.addEventListener('click', (e) => {
             missed++;
             liveHeart.removeChild(liveHeart.firstChild);
             const lostHeart = document.createElement('li');
-            lostHeart.innerHTML = 'src="images/lostHeart.png" height="35px" width="30px"';
+            lostHeart.src = "images/lostHeart.png";
 
         } else {
             alert("way to go!  Select another letter to continue playing.");
