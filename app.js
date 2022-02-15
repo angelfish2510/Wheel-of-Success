@@ -5,9 +5,7 @@ const overlay = document.getElementById('overlay');
 
 let missed = 0;
 
-const scoreboard = document.querySelector('#scoreboard');
-let liveHeart = scoreboard.querySelectorAll(":scope > ol");
-
+let liveHeart = document.querySelector('#scoreboard ol')
 
 //declare and initialize the phrases array, storing at least five strings that contain only letters and spaces, no punctuation
 const myPhrases = ['Bunnies are the best',
@@ -76,7 +74,7 @@ function checkLetter(button) {
 // ❏ Create a variable to store if a match is found and give it an initial value of null
     let match = null
 // ❏ Loop through all of the li elements. Remember: arrays start with index 0!
-    for (let i = 0; i <=liElements.length; i++) {
+    for (let i = 0; i < liElements.length; i++) {
 // ❏ Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
         if ( button.innerText === liElements[i].innerText ) {
 // ❏ If they match, add the “show” class to the li
@@ -86,6 +84,8 @@ console.log( liElements[i].classList.add("show") );
             match = button.innertext;
         // } else if (button.innerText !== liLetters[i].innerText) {
         //     return null;
+        } else {
+            match = null;
         }
     }
     return match;
@@ -115,7 +115,12 @@ qwerty.addEventListener('click', (e) => {
 // images and increment the missed counter
         if (letterFound !== button.innerText) {
             missed++;
-            liveHeart.removeChild(liveHeart.childNodes[0]);
-        }        
+            liveHeart.removeChild(liveHeart.firstChild);
+            const lostHeart = document.createElement('li');
+            lostHeart.innerHTML = 'src="images/lostHeart.png" height="35px" width="30px"';
+
+        } else {
+            alert("way to go!  Select another letter to continue playing.");
+        }       
       }
 });
