@@ -73,7 +73,7 @@ function checkLetter(button) {
 // ❏ Store all of the li elements in a variable inside checkLetter
     const liElements = document.querySelectorAll('li');
 // ❏ Create a variable to store if a match is found and give it an initial value of null
-    let match = null
+    let match = null;
 // ❏ Loop through all of the li elements. Remember: arrays start with index 0!
     for (let i = 0; i < liElements.length; i++) {
 // ❏ Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
