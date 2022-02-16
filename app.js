@@ -82,7 +82,7 @@ function checkLetter(button) {
         liElements[i].classList.add("show");
 
 // ❏ If they match, store the button text in the match variable
-            match = button.innertext;
+            match = button.innerText;
         // } else if (button.innerText !== liLetters[i].innerText) {
         //     return null;
         // } else {
@@ -126,3 +126,8 @@ qwerty.addEventListener('click', (e) => {
         }       
       }
 });
+
+
+const checkWin = () => {
+
+}
