@@ -127,14 +127,16 @@ qwerty.addEventListener('click', (e) => {
         let letterFound = checkLetter(button);
 // ❏ If the checkLetter function does not find a letter, remove one of the heart
 // images and increment the missed counter
-        let livesRemaining = (5 - missed);
+        let livesRemaining;
         if (letterFound === null) {    
             missed++;
+            livesRemaining = 5 - missed;
             document.querySelector('.tries img').src = "images/lostHeart.png";
             alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
 
         } else {
             missed = missed;
+            livesRemaining = 5 - missed;
             alert(`Way to go!  Select another letter to continue playing.  You still have ${livesRemaining} more tries... you can do it!`);
         }       
       }
