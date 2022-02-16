@@ -114,9 +114,12 @@ qwerty.addEventListener('click', (e) => {
         let letterFound = checkLetter(button);
 // ❏ If the checkLetter function does not find a letter, remove one of the heart
 // images and increment the missed counter
-        if (letterFound !== button.innerText) {
+        // if (letterFound !== button.innerText) {
+        if (letterFound === null) {    
             missed++;
-            liveHeart.src = "images/lostHeart.png";
+            // liveHeart.src = "images/lostHeart.png";
+
+            document.querySelector('.tries img').src = "images/lostHeart.png";
 
         } else {
             alert("way to go!  Select another letter to continue playing.");
