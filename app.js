@@ -5,6 +5,10 @@ const overlay = document.getElementById('overlay');
 
 let missed = 0;
 
+let show = document.querySelectorAll('.show').length;
+let letters = document.querySelectorAll('.letters').length;
+
+
 let scoreboardLives = document.querySelector('#scoreboard ol')
 let liveHeart = scoreboardLives.firstChild;
 
@@ -83,16 +87,25 @@ function checkLetter(button) {
 
 // ❏ If they match, store the button text in the match variable
             match = button.innerText;
-        // } else if (button.innerText !== liLetters[i].innerText) {
-        //     return null;
-        // } else {
-        //     match = null;
         }
     }
     return match;
 }
 
+const checkWin = () => {
 
+    if (show = letters) {
+        overlay.style.className.display = ('win', 'flex');
+        document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!'
+        // overlay.style.display = 'flex';
+    } else if (missed > 4) {
+           overlay.style.className = 'lose';
+           overlay.style.display = 'flex';
+    // } else {
+
+    //     alert()
+    }
+};
 
 // Start by creating an event listener for the qwerty element that listens for the
 // “click” event.
@@ -114,20 +127,16 @@ qwerty.addEventListener('click', (e) => {
         let letterFound = checkLetter(button);
 // ❏ If the checkLetter function does not find a letter, remove one of the heart
 // images and increment the missed counter
-        // if (letterFound !== button.innerText) {
+        let livesRemaining = (5 - missed);
         if (letterFound === null) {    
             missed++;
-            // liveHeart.src = "images/lostHeart.png";
-
             document.querySelector('.tries img').src = "images/lostHeart.png";
+            alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
 
         } else {
-            alert("way to go!  Select another letter to continue playing.");
+            missed = missed;
+            alert(`Way to go!  Select another letter to continue playing.  You still have ${livesRemaining} more tries... you can do it!`);
         }       
       }
+      checkWin();
 });
-
-
-const checkWin = () => {
-
-}
