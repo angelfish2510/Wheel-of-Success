@@ -36,23 +36,35 @@ let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
 
 // allow user to hide alerts
 
-// const hideAlerts = document.createElement('label');
-// label.textContent = 'Hide Alerts';
+const divForHideAlerts = document.createElement('div');
+divForHideAlerts.style.display = 'flex, align-items';
 
-// const checkbox = document.createElement('input');
-// checkbox.type = 'checkbox';
+const headerMainPage = document.querySelector('.header'); 
 
-// label.appendChild(checkbox);
+const hideAlerts = document.createElement('label');
+hideAlerts.textContent = 'Check the Box to Hide Alerts';
+hideAlerts.style.color = ('purple');
+hideAlerts.style.fontSize = 'xx-large';
 
-// h2.appendChild(label);
+headerMainPage.appendChild(divForHideAlerts);
+divForHideAlerts.appendChild(hideAlerts);
 
-// h2.addEventListener('submit', (e) => {
-//     const checkbox = e.target;
-//     if (checked) {
-//         window.alert = function() {};
-//     }
+let checkbox = document.createElement('input');
+checkbox.type = 'checkbox';
+checkbox.style.width = '50px';
+checkbox.style.height = '50px';
+checkbox.style.marginLeft = '40px';
 
-// })
+hideAlerts.appendChild(checkbox);
+
+headerMainPage.addEventListener('change', (e) => {
+    // checkbox = e.target;
+    e.target.checked
+    if(hideAlerts) {
+        window.alert = function() {};
+    }
+
+});
 
 
 // display gameboard according to randomly selected phrase

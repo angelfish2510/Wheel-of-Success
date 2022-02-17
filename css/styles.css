@@ -97,7 +97,6 @@ button {
   background-color: #76CE82;
   transition: transform .7s;
   transform: rotate(2turn);
-  z-index: 1;
 }
 
 /* Keyboard */
