@@ -90,27 +90,11 @@ const checkWin = () => {
         startButton.addEventListener('click', (e) => {
             playAgain();
         })
-        // const newGame = document.createElement('input');
-        // newGame.type = 'button';
-        // newGame.innerText = 'Play Again';
-        // newGame.className = 'btn__reset';
-        // overlayContainer.appendChild(newGame);
-        // return newGame;
-
-        // startButton.className = 'btn__startover';
-        // overlay.style.display = 'flex';
-    // } else if (missed > 1 && missed < 5) {
-    //      checkWinLives = missed;
-    //      alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
-    //    } else if ( missed = 1 ) {
-    //     livesRemaining = 5 - missed;
-    //     alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more try... you can do it!`);
     }   else if (missed > 4) {
             overlayContainer.className = 'lose';
             overlay.style.display = 'flex';
             document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
             startButton.innerText = 'Try Again';
-            //    startButton.className = 'btn__startover';
             lost = 'yes';
             won = 'no';
             startButton.addEventListener('click', (e) => {
@@ -118,7 +102,6 @@ const checkWin = () => {
             })
         }
     return lost;
-// return playAgain;
 };
 
 
