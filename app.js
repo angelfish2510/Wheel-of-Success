@@ -1,31 +1,23 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
-
 const overlay = document.getElementById('overlay');
 const overlayContainer = document.querySelector('.main-container div'); 
-
+const show = document.getElementsByClassName('show');
+const letters = document.getElementsByClassName('letter');
+const scoreboardLives = document.querySelectorAll('.tries img');
 
 let missed = 0;
 let won;
 let newGame;
 
-let show = document.getElementsByClassName('show');
-let letters = document.getElementsByClassName('letter');
-
-
-// let scoreboardLives = document.querySelector('#scoreboard ol')
-// let liveHeart = scoreboardLives.firstChild;
-
-let scoreboardLives = document.querySelectorAll('.tries img');
-
 
 //create phrases and convert to arrays of letters
 
-const myPhrases = ['Bunnies are the best',
-                 'Belize is incredible',
-                 'Apple starts with A',
-                 'My children are amazing humans',
+const myPhrases = ['ohana means family',
+                 'You better Belize it',
+                 'it is not easy being green',
+                 'Just a spoon full of sugar helps the medicine go down',
                  'Always take the time to stop and smell the roses'
 ];
 
