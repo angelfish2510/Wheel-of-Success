@@ -5,12 +5,11 @@ const startButton = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 const overlayContainer = document.querySelector('.main-container div'); 
 
-const secondPhrase = document.querySelector('#phrase2');
-const secondKeys = document.querySelector('#qwerty2');
 
 let missed = 0;
 let lost;
 let won;
+let newGame;
 
 let show = document.getElementsByClassName('show');
 let letters = document.getElementsByClassName('letter');
@@ -33,8 +32,6 @@ const myPhrases = ['Bunnies are the best',
 //Hide the overlay by changing its display property
 
 startButton.addEventListener('click', (e) => {
-    secondPhrase.style.display = 'none';
-    secondKeys.style.display = 'none';
     overlay.style.display = 'none';
 });
 
@@ -51,7 +48,7 @@ function getRandomPhrasesAsArray(arr) {
 
 // After you create the getRandomPhraseArray, you will need to "call" it, and pass the phrases array to it.
 let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
-
+let charactersInRandomPhrase2 = getRandomPhrasesAsArray(myPhrases);
 
 
 // Create an addPhraseToDisplay function that loops through an array of characters. You will need to write it so that it can take any array of letters and add it to the display.
@@ -114,7 +111,15 @@ const checkWin = () => {
         overlayContainer.className = 'win';
         overlay.style.display = 'flex';
         document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!';
-        startButton.innerText = 'Think you can be SUCCESSFUL once again? Click Here!';
+        startButton.innerText = 'We have success! Click to play again.';
+        playAgain();
+        // const newGame = document.createElement('input');
+        // newGame.type = 'button';
+        // newGame.innerText = 'Play Again';
+        // newGame.className = 'btn__reset';
+        // overlayContainer.appendChild(newGame);
+        // return newGame;
+
         // startButton.className = 'btn__startover';
         // overlay.style.display = 'flex';
     // } else if (missed > 1 && missed < 5) {
@@ -166,7 +171,7 @@ qwerty.addEventListener('click', (e) => {
         button.disabled = true;
         alert("Please select a letter.");
     } else {
-        button.disabled = false;
+        // button.disabled = false;
         // ❏ Add the “chosen” class to the button that was pressed.
         button.classList.add("chosen");
 // ❏ Call the checkLetter function and store the results in a variable.
@@ -207,8 +212,33 @@ qwerty.addEventListener('click', (e) => {
       }
 });
 
+
+function playAgain () {
+
+    missed = 0;
+    
+    phrase.textContent = ' ';
+
+    const selectedLetters = document.querySelectorAll(".chosen");
+    selectedLetters.disabled = false;
+    selectedLetters.classList.remove("chosen");
+
+    let lostHearts = document.querySelectorAll('.fail');
+    lostHearts.className = '.tries';
+
+    addPhraseToDisplay(charactersInRandomPhrase);
+
+}
+
 // playAgain.addEventListener('click', (e) => {
 //     overlay.style.display = 'none';
 //     getRandomPhrasesAsArray(myPhrases);
 // });
-
+// newGame.addEventListener('submit', (e) => {
+//     secondPhrase.style.display = 'flex';
+//     phrase.style.display = 'none';
+//     secondKeys.style.display = 'flex';
+//     qwerty.style.display = 'none';
+//     overlay.style.display = 'none';
+//     addPhraseToDisplay(charactersInRandomPhrase2);
+// });
