@@ -20,6 +20,7 @@ let liveHeart = scoreboardLives.firstChild;
 // let liveHeart = document.querySelector('.tries')
 
 
+//create phrases and convert to arrays of letters
 
 const myPhrases = ['Bunnies are the best',
                  'Belize is incredible',
@@ -27,7 +28,6 @@ const myPhrases = ['Bunnies are the best',
                  'My children are amazing humans',
                  'Always take the time to stop and smell the roses'
 ];
-
 
 
 function getRandomPhrasesAsArray(arr) {
@@ -41,6 +41,9 @@ function getRandomPhrasesAsArray(arr) {
 let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
 
 
+
+
+// display gameboard according to randomly selected phrase
 
 function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -59,6 +62,8 @@ addPhraseToDisplay(charactersInRandomPhrase);
 
 
 
+// check for matches between guessed letter and gameboard phrase
+
 function checkLetter(button) {
     const liElements = document.querySelectorAll('li');
     let match = null;
@@ -72,6 +77,7 @@ function checkLetter(button) {
 }
 
 
+// check for end of game
 
 const checkWin = () => {
     if (show.length === letters.length) {
@@ -112,9 +118,7 @@ const checkWin = () => {
 
 
 
-
-
-
+//reset gameboard, keyboard, hearts
 
 function playAgain () {
 
@@ -145,6 +149,9 @@ function playAgain () {
 //     overlay.style.display = 'none';
 //     addPhraseToDisplay(charactersInRandomPhrase2);
 // });
+
+
+
 
 // initialize game
 
