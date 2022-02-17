@@ -7,7 +7,6 @@ const overlayContainer = document.querySelector('.main-container div');
 
 
 let missed = 0;
-let lost;
 let won;
 let newGame;
 
@@ -15,9 +14,10 @@ let show = document.getElementsByClassName('show');
 let letters = document.getElementsByClassName('letter');
 
 
-let scoreboardLives = document.querySelector('#scoreboard ol')
-let liveHeart = scoreboardLives.firstChild;
-// let liveHeart = document.querySelector('.tries')
+// let scoreboardLives = document.querySelector('#scoreboard ol')
+// let liveHeart = scoreboardLives.firstChild;
+
+let scoreboardLives = document.querySelectorAll('.tries img');
 
 
 //create phrases and convert to arrays of letters
@@ -81,7 +81,6 @@ function checkLetter(button) {
 
 const checkWin = () => {
     if (show.length === letters.length) {
-        lost = 'no';
         won = 'yes';
         overlayContainer.className = 'win';
         overlay.style.display = 'flex';
@@ -95,13 +94,12 @@ const checkWin = () => {
             overlay.style.display = 'flex';
             document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
             startButton.innerText = 'Try Again';
-            lost = 'yes';
             won = 'no';
             startButton.addEventListener('click', (e) => {
                 playAgain();
             })
         }
-    return lost;
+    return won;
 };
 
 
@@ -117,36 +115,16 @@ function playAgain () {
     for (let i = 0; i < selectedLetters.length; i++) {
         selectedLetters[i].disabled = false;
         selectedLetters[i].classList.remove("chosen");
-
     };
 
-
-    let lostHearts = document.querySelectorAll('.fail');
-    for (let i = 0; i < lostHearts.length; i++) {
-        lostHearts[i].className = '.tries';
+    for (let i = 0; i < scoreboardLives.length; i++) {
+        scoreboardLives[i].src = "images/liveHeart.png";
     };
-
-    document.querySelector('.tries img').src = "images/liveHeart.png";
 
     let charactersInRandomPhrase2 = getRandomPhrasesAsArray(myPhrases);
     addPhraseToDisplay(charactersInRandomPhrase2);
 
 }
-
-// playAgain.addEventListener('click', (e) => {
-//     overlay.style.display = 'none';
-//     getRandomPhrasesAsArray(myPhrases);
-// });
-// newGame.addEventListener('submit', (e) => {
-//     secondPhrase.style.display = 'flex';
-//     phrase.style.display = 'none';
-//     secondKeys.style.display = 'flex';
-//     qwerty.style.display = 'none';
-//     overlay.style.display = 'none';
-//     addPhraseToDisplay(charactersInRandomPhrase2);
-// });
-
-
 
 
 // initialize game
@@ -163,15 +141,14 @@ qwerty.addEventListener('click', (e) => {
         button.disabled = true;
         alert("Please select a letter.");
     } else {
-        // button.disabled = false;
         button.classList.add("chosen");
         let letterFound = checkLetter(button);
         if (letterFound === null) {    
             missed++;
-            document.querySelector('.tries img').src = "images/lostHeart.png";
-            document.querySelector('.tries').className = 'fail';
+            scoreboardLives[(missed-1)].src = "images/lostHeart.png";
+            // document.querySelector('.tries').className = 'fail';
             checkWin();
-            if (missed > 0 && missed < 5) {
+            if (missed > 0 && missed < 4) {
                 livesRemaining = 5 - missed;
                 alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
             } else if  (missed === 4 ) {
@@ -183,9 +160,8 @@ qwerty.addEventListener('click', (e) => {
             if (won === 'yes') {
                 return;
             }
-            // missed = missed;
             livesRemaining = 5 - missed;
-            alert(`Way to go!  Select another letter to continue playing.  You still have ${livesRemaining} more lives... you can do it!`);
+            alert(`Way to go!  You chose wisely AND you still have ${livesRemaining} more lives... you can do it!  Select another letter to continue playing.`);
         }
       }
 });
