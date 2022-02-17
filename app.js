@@ -4,6 +4,7 @@ const startButton = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 const overlayContainer = document.querySelector('.main-container div'); 
 const show = document.getElementsByClassName('show');
+// const shownLetters = document.querySelectorAll('.show');
 const letters = document.getElementsByClassName('letter');
 const scoreboardLives = document.querySelectorAll('.tries img');
 
@@ -78,6 +79,9 @@ const checkWin = () => {
         overlay.style.display = 'flex';
         document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!';
         startButton.innerText = 'We have success! Click to play again.';
+        for ( let i = 0; i < show.length; i++ ) {
+            show[i].classList.remove("show");
+       };   
         startButton.addEventListener('click', (e) => {
             playAgain();
         })
@@ -87,6 +91,9 @@ const checkWin = () => {
             document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
             startButton.innerText = 'Try Again';
             won = 'no';
+            for ( let i = 0; i < show.length; i++ ) {
+                show[i].classList.remove("show");
+           };   
             startButton.addEventListener('click', (e) => {
                 playAgain();
             })
@@ -104,7 +111,7 @@ function playAgain () {
     phrase.textContent = ' ';
     
     const selectedLetters = document.querySelectorAll(".chosen");    
-    for (let i = 0; i < selectedLetters.length; i++) {
+    for ( let i = 0; i < selectedLetters.length; i++ ) {
         selectedLetters[i].disabled = false;
         selectedLetters[i].classList.remove("chosen");
     };
