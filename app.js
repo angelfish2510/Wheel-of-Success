@@ -57,14 +57,24 @@ checkbox.style.marginLeft = '40px';
 
 hideAlerts.appendChild(checkbox);
 
-headerMainPage.addEventListener('change', (e) => {
-    // checkbox = e.target;
-    e.target.checked
-    if(hideAlerts) {
-        window.alert = function() {};
-    }
+const originalAlert = window.alert;
 
+headerMainPage.addEventListener('change', (e) => {
+    let checkbox = e.target
+    if(checkbox.checked) {
+        window.alert = function() {};
+    } else {
+        window.alert = originalAlert;
+    }
 });
+
+// headerMainPage.addEventListener('change', (e) => {
+//     // checkbox = e.target;
+//     e.target.checked 
+//     if(!hideAlerts) {
+//         window.alert = originalAlert;
+//     } 
+// });
 
 
 // display gameboard according to randomly selected phrase
