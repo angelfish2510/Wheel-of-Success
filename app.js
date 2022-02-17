@@ -34,6 +34,25 @@ function getRandomPhrasesAsArray(arr) {
 let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
 
 
+// allow user to hide alerts
+
+// const hideAlerts = document.createElement('label');
+// label.textContent = 'Hide Alerts';
+
+// const checkbox = document.createElement('input');
+// checkbox.type = 'checkbox';
+
+// label.appendChild(checkbox);
+
+// h2.appendChild(label);
+
+// h2.addEventListener('submit', (e) => {
+//     const checkbox = e.target;
+//     if (checked) {
+//         window.alert = function() {};
+//     }
+
+// })
 
 
 // display gameboard according to randomly selected phrase
@@ -79,9 +98,9 @@ const checkWin = () => {
         overlay.style.display = 'flex';
         document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!';
         startButton.innerText = 'We have success! Click to play again.';
-        for ( let i = 0; i < show.length; i++ ) {
-            show[i].classList.remove("show");
-       };   
+    //     for ( let i = 0; i < show.length; i++ ) {
+    //         show[i].classList.remove("show");
+    //    };   
         startButton.addEventListener('click', (e) => {
             playAgain();
         })
@@ -91,9 +110,9 @@ const checkWin = () => {
             document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
             startButton.innerText = 'Try Again';
             won = 'no';
-            for ( let i = 0; i < show.length; i++ ) {
-                show[i].classList.remove("show");
-           };   
+        //     for ( let i = 0; i < show.length; i++ ) {
+        //         show[i].classList.remove("show");
+        //    };   
             startButton.addEventListener('click', (e) => {
                 playAgain();
             })
