@@ -87,7 +87,9 @@ const checkWin = () => {
         overlay.style.display = 'flex';
         document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!';
         startButton.innerText = 'We have success! Click to play again.';
-        playAgain();
+        startButton.addEventListener('click', (e) => {
+            playAgain();
+        })
         // const newGame = document.createElement('input');
         // newGame.type = 'button';
         // newGame.innerText = 'Play Again';
@@ -111,6 +113,9 @@ const checkWin = () => {
             //    startButton.className = 'btn__startover';
             lost = 'yes';
             won = 'no';
+            startButton.addEventListener('click', (e) => {
+                playAgain();
+            })
         }
     return lost;
 // return playAgain;
@@ -123,17 +128,25 @@ const checkWin = () => {
 function playAgain () {
 
     missed = 0;
-    
     phrase.textContent = ' ';
+    
+    const selectedLetters = document.querySelectorAll(".chosen");    
+    for (let i = 0; i < selectedLetters.length; i++) {
+        selectedLetters[i].disabled = false;
+        selectedLetters[i].classList.remove("chosen");
 
-    const selectedLetters = document.querySelectorAll(".chosen");
-    selectedLetters.disabled = false;
-    selectedLetters.classList.remove("chosen");
+    };
+
 
     let lostHearts = document.querySelectorAll('.fail');
-    lostHearts.className = '.tries';
+    for (let i = 0; i < lostHearts.length; i++) {
+        lostHearts[i].className = '.tries';
+    };
 
-    addPhraseToDisplay(charactersInRandomPhrase);
+    document.querySelector('.tries img').src = "images/liveHeart.png";
+
+    let charactersInRandomPhrase2 = getRandomPhrasesAsArray(myPhrases);
+    addPhraseToDisplay(charactersInRandomPhrase2);
 
 }
 
@@ -175,10 +188,9 @@ qwerty.addEventListener('click', (e) => {
             document.querySelector('.tries img').src = "images/lostHeart.png";
             document.querySelector('.tries').className = 'fail';
             checkWin();
-            if (missed > 1 && missed < 5) {
+            if (missed > 0 && missed < 5) {
                 livesRemaining = 5 - missed;
                 alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
-
             } else if  (missed === 4 ) {
                 livesRemaining = 5 - missed;
                 alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more try... you can do it!`);
@@ -188,11 +200,9 @@ qwerty.addEventListener('click', (e) => {
             if (won === 'yes') {
                 return;
             }
-            let livesRemaining;
             // missed = missed;
             livesRemaining = 5 - missed;
-            
-            alert(`Way to go!  Select another letter to continue playing.  You still have ${livesRemaining} more tries... you can do it!`);
+            alert(`Way to go!  Select another letter to continue playing.  You still have ${livesRemaining} more lives... you can do it!`);
         }
       }
 });
