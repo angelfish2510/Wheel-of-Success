@@ -58,21 +58,13 @@ function addPhraseToDisplay(arr) {
 addPhraseToDisplay(charactersInRandomPhrase);
 
 
-// Create a function “stub” for the checkLetter function
-// ❏ Include a parameter in the function head for the button that gets clicked
-function checkLetter(button) {
-// ❏ Store all of the li elements in a variable inside checkLetter
-    const liElements = document.querySelectorAll('li');
-// ❏ Create a variable to store if a match is found and give it an initial value of null
-    let match = null;
-// ❏ Loop through all of the li elements. Remember: arrays start with index 0!
-    for (let i = 0; i < liElements.length; i++) {
-// ❏ Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
-        if ( button.innerText === liElements[i].innerText ) {
-// ❏ If they match, add the “show” class to the li
-        liElements[i].classList.add("show");
 
-// ❏ If they match, store the button text in the match variable
+function checkLetter(button) {
+    const liElements = document.querySelectorAll('li');
+    let match = null;
+    for (let i = 0; i < liElements.length; i++) {
+        if ( button.innerText === liElements[i].innerText ) {
+            liElements[i].classList.add("show");
             match = button.innerText;
         }
     }
@@ -82,7 +74,6 @@ function checkLetter(button) {
 
 
 const checkWin = () => {
-    // let checkWinLives;
     if (show.length === letters.length) {
         lost = 'no';
         won = 'yes';
@@ -106,30 +97,17 @@ const checkWin = () => {
     //    } else if ( missed = 1 ) {
     //     livesRemaining = 5 - missed;
     //     alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more try... you can do it!`);
-       }
-       else if (missed > 4) {
-           overlayContainer.className = 'lose';
-           overlay.style.display = 'flex';
-           document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
-           startButton.innerText = 'Try Again';
-        //    startButton.className = 'btn__startover';
-           lost = 'yes';
-           won = 'no';
-    // } else {
-
-    //     alert()
-     }
+    }   else if (missed > 4) {
+            overlayContainer.className = 'lose';
+            overlay.style.display = 'flex';
+            document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
+            startButton.innerText = 'Try Again';
+            //    startButton.className = 'btn__startover';
+            lost = 'yes';
+            won = 'no';
+        }
     return lost;
 // return playAgain;
-
-    // function buttonText() {
-    //     if (lost === 'yes') {
-
-    //     } else if (lost === 'no') {
-    //     }
-    // }
-
-    // buttonText();
 };
 
 
