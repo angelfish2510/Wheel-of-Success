@@ -1,16 +1,25 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.querySelector('.btn__reset');
+
 const overlay = document.getElementById('overlay');
+const overlayContainer = document.querySelector('.main-container div'); 
+
+const secondPhrase = document.querySelector('#phrase2');
+const secondKeys = document.querySelector('#qwerty2');
 
 let missed = 0;
+let lost;
+let won;
 
-let show = document.querySelectorAll('.show').length;
-let letters = document.querySelectorAll('.letters').length;
+let show = document.getElementsByClassName('show');
+let letters = document.getElementsByClassName('letter');
 
 
 let scoreboardLives = document.querySelector('#scoreboard ol')
 let liveHeart = scoreboardLives.firstChild;
+// let liveHeart = document.querySelector('.tries')
+
 
 //declare and initialize the phrases array, storing at least five strings that contain only letters and spaces, no punctuation
 const myPhrases = ['Bunnies are the best',
@@ -24,6 +33,8 @@ const myPhrases = ['Bunnies are the best',
 //Hide the overlay by changing its display property
 
 startButton.addEventListener('click', (e) => {
+    secondPhrase.style.display = 'none';
+    secondKeys.style.display = 'none';
     overlay.style.display = 'none';
 });
 
@@ -40,6 +51,7 @@ function getRandomPhrasesAsArray(arr) {
 
 // After you create the getRandomPhraseArray, you will need to "call" it, and pass the phrases array to it.
 let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
+
 
 
 // Create an addPhraseToDisplay function that loops through an array of characters. You will need to write it so that it can take any array of letters and add it to the display.
@@ -92,25 +104,59 @@ function checkLetter(button) {
     return match;
 }
 
-const checkWin = () => {
 
-    if (show = letters) {
-        overlay.style.className.display = ('win', 'flex');
-        document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!'
+
+const checkWin = () => {
+    // let checkWinLives;
+    if (show.length === letters.length) {
+        lost = 'no';
+        won = 'yes';
+        overlayContainer.className = 'win';
+        overlay.style.display = 'flex';
+        document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!';
+        startButton.innerText = 'Think you can be SUCCESSFUL once again? Click Here!';
+        // startButton.className = 'btn__startover';
         // overlay.style.display = 'flex';
-    } else if (missed > 4) {
-           overlay.style.className = 'lose';
+    // } else if (missed > 1 && missed < 5) {
+    //      checkWinLives = missed;
+    //      alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
+    //    } else if ( missed = 1 ) {
+    //     livesRemaining = 5 - missed;
+    //     alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more try... you can do it!`);
+       }
+       else if (missed > 4) {
+           overlayContainer.className = 'lose';
            overlay.style.display = 'flex';
+           document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
+           startButton.innerText = 'Try Again';
+        //    startButton.className = 'btn__startover';
+           lost = 'yes';
+           won = 'no';
     // } else {
 
     //     alert()
-    }
+     }
+    return lost;
+// return playAgain;
+
+    // function buttonText() {
+    //     if (lost === 'yes') {
+
+    //     } else if (lost === 'no') {
+    //     }
+    // }
+
+    // buttonText();
 };
+
+
+
 
 // Start by creating an event listener for the qwerty element that listens for the
 // “click” event.
 qwerty.addEventListener('click', (e) => {
     let button = e.target;
+    let livesRemaining;
     console.log(button.innerText);
 
 
@@ -127,18 +173,42 @@ qwerty.addEventListener('click', (e) => {
         let letterFound = checkLetter(button);
 // ❏ If the checkLetter function does not find a letter, remove one of the heart
 // images and increment the missed counter
-        let livesRemaining;
+
         if (letterFound === null) {    
             missed++;
-            livesRemaining = 5 - missed;
             document.querySelector('.tries img').src = "images/lostHeart.png";
-            alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
+            document.querySelector('.tries').className = 'fail';
+            checkWin();
+            if (missed > 1 && missed < 5) {
+                livesRemaining = 5 - missed;
+                alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more tries... you can do it!`);
+
+            } else if  (missed === 4 ) {
+                livesRemaining = 5 - missed;
+                alert(`Darn... you lost a life, but I believe in you!  You still have ${livesRemaining} more try... you can do it!`);
+               }
+
+
+        // } else if (!win) {
 
         } else {
-            missed = missed;
+            checkWin();
+            if (won === 'yes') {
+                return;
+            }
+            let livesRemaining;
+            // missed = missed;
             livesRemaining = 5 - missed;
+            
             alert(`Way to go!  Select another letter to continue playing.  You still have ${livesRemaining} more tries... you can do it!`);
-        }       
+        // }   else {
+            // tryAgain();
+        }
       }
-      checkWin();
 });
+
+// playAgain.addEventListener('click', (e) => {
+//     overlay.style.display = 'none';
+//     getRandomPhrasesAsArray(myPhrases);
+// });
+
