@@ -4,7 +4,6 @@ const startButton = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 const overlayContainer = document.querySelector('.main-container div'); 
 const show = document.getElementsByClassName('show');
-// const shownLetters = document.querySelectorAll('.show');
 const letters = document.getElementsByClassName('letter');
 const scoreboardLives = document.querySelectorAll('.tries img');
 
@@ -14,7 +13,6 @@ let newGame;
 
 
 //create phrases and convert to arrays of letters
-
 const myPhrases = ['ohana means family',
                  'You better Belize it',
                  'it is not easy being green',
@@ -34,8 +32,9 @@ function getRandomPhrasesAsArray(arr) {
 let charactersInRandomPhrase = getRandomPhrasesAsArray(myPhrases);
 
 
-// allow user to hide alerts
 
+// allow user to hide alerts
+    // create button
 const divForHideAlerts = document.createElement('div');
 divForHideAlerts.style.display = 'flex, align-items';
 
@@ -57,8 +56,10 @@ checkbox.style.marginLeft = '40px';
 
 hideAlerts.appendChild(checkbox);
 
+    // create default to revert to
 const originalAlert = window.alert;
 
+    // event listener for clicking and unclicking the new button
 headerMainPage.addEventListener('change', (e) => {
     let checkbox = e.target
     if(checkbox.checked) {
@@ -68,17 +69,9 @@ headerMainPage.addEventListener('change', (e) => {
     }
 });
 
-// headerMainPage.addEventListener('change', (e) => {
-//     // checkbox = e.target;
-//     e.target.checked 
-//     if(!hideAlerts) {
-//         window.alert = originalAlert;
-//     } 
-// });
 
 
 // display gameboard according to randomly selected phrase
-
 function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
         const li = document.createElement('li');
@@ -97,7 +90,6 @@ addPhraseToDisplay(charactersInRandomPhrase);
 
 
 // check for matches between guessed letter and gameboard phrase
-
 function checkLetter(button) {
     const liElements = document.querySelectorAll('li');
     let match = null;
@@ -112,7 +104,6 @@ function checkLetter(button) {
 
 
 // check for end of game
-
 const checkWin = () => {
     if (show.length === letters.length) {
         won = 'yes';
@@ -120,9 +111,6 @@ const checkWin = () => {
         overlay.style.display = 'flex';
         document.querySelector('.title').innerText = 'Wheel of Success - And You Are Successful!  Congratulations on Winning!';
         startButton.innerText = 'We have success! Click to play again.';
-    //     for ( let i = 0; i < show.length; i++ ) {
-    //         show[i].classList.remove("show");
-    //    };   
         startButton.addEventListener('click', (e) => {
             playAgain();
         })
@@ -131,10 +119,7 @@ const checkWin = () => {
             overlay.style.display = 'flex';
             document.querySelector('.title').innerText = 'Wheel of Success - Not so successful this time!';
             startButton.innerText = 'Try Again';
-            won = 'no';
-        //     for ( let i = 0; i < show.length; i++ ) {
-        //         show[i].classList.remove("show");
-        //    };   
+            won = 'no';  
             startButton.addEventListener('click', (e) => {
                 playAgain();
             })
@@ -145,7 +130,6 @@ const checkWin = () => {
 
 
 //reset gameboard, keyboard, hearts
-
 function playAgain () {
 
     missed = 0;
@@ -168,7 +152,6 @@ function playAgain () {
 
 
 // initialize game
-
 startButton.addEventListener('click', (e) => {
     overlay.style.display = 'none';
 });
@@ -177,16 +160,17 @@ qwerty.addEventListener('click', (e) => {
     let button = e.target;
     let livesRemaining;
     console.log(button.innerText);
-    if ( button.tagName !== 'BUTTON' || button.className === "chosen" ) {
-        button.disabled = true;
+    if ( button.tagName !== 'BUTTON' ) {
         alert("Please select a letter.");
+    } else if (button.className === "chosen") {
+        button.disabled = true;
+        alert(`The letter ${button.innerText} has already been selected.  Please select a new letter to continue playing.`);
     } else {
         button.classList.add("chosen");
         let letterFound = checkLetter(button);
         if (letterFound === null) {    
             missed++;
             scoreboardLives[(missed-1)].src = "images/lostHeart.png";
-            // document.querySelector('.tries').className = 'fail';
             checkWin();
             if (missed > 0 && missed < 4) {
                 livesRemaining = 5 - missed;
